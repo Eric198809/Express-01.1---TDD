@@ -6,7 +6,7 @@ const app = require("../app");
 ///////////////// Test url /api/movies/:1 //////////////////////
 
 describe("GET /api/movies/:id", () => {
-    it("should return movie ", async () => {
+    it("should return movie 1 ", async () => {
       const response = await request(app).get("/api/movies/1");
       
       expect(response.headers["content-type"]).toMatch(/json/);
@@ -14,7 +14,16 @@ describe("GET /api/movies/:id", () => {
     });
   });
 
- 
+  ///////////////// Test url /api/movies/:0 //////////////////////
+
+  describe("GET /api/movies/:id", () => {
+    it("should return error404 ", async () => {
+      const response = await request(app).get("/api/movies/0");
+      
+      expect(response.headers["content-type"]).toMatch(/json/);
+      expect(response.status).toEqual(404);
+    });
+  });
 
   ///////////////// Test url /api/movies //////////////////////
 
